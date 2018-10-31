@@ -1,0 +1,69 @@
+{
+  "$id": "https://example.com/person.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Parameters",
+  "type": "array",
+  "items": [
+    {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the parameter"
+        },
+        "description": {
+          "type": "string",
+          "description": "A short description what the parameter does"
+        },
+        "parameter": {
+          "oneOf": [
+            {
+              "properties": {
+                "minimum": {
+                  "type": "number"
+                },
+                "value": {
+                  "type": "number"
+                },
+                "maximum": {
+                  "type": "number"
+                }
+              }
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": "number"
+                }
+              }
+            },
+            {
+              "properties": {
+                "value": {
+                  "oneOf": [
+                    {
+                      "$ref": "enumArray"
+                    }
+                  ]
+                },
+                "options": {
+                  "$id": "enumArray",
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": "boolean"
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
