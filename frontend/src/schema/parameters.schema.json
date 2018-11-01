@@ -2,68 +2,74 @@
   "$id": "https://raw.githubusercontent.com/dhbwstudienarbeit2019/frontend/parameter-scheme/frontend/src/schema/parameters.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Parameters",
-  "type": "array",
-  "items": [
-    {
-      "properties": {
-        "name": {
-          "type": "string",
-          "description": "Name of the parameter"
-        },
-        "description": {
-          "type": "string",
-          "description": "A short description what the parameter does"
-        },
-        "parameter": {
-          "oneOf": [
-            {
-              "properties": {
-                "minimum": {
-                  "type": "number"
-                },
-                "value": {
-                  "type": "number"
-                },
-                "maximum": {
-                  "type": "number"
-                }
-              }
+  "type": "object",
+  "properties": {
+    "item": {
+      "type": "array",
+      "items": [
+        {
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Name of the parameter"
             },
-            {
-              "properties": {
-                "value": {
-                  "type": "number"
-                }
-              }
+            "description": {
+              "type": "string",
+              "description": "A short description what the parameter does"
             },
-            {
-              "properties": {
-                "value": {
-                  "oneOf": [
-                    {
-                      "$ref": "enumArray"
+            "parameter": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "minimum": {
+                      "type": "number"
+                    },
+                    "value": {
+                      "type": "number"
+                    },
+                    "maximum": {
+                      "type": "number"
                     }
-                  ]
+                  }
                 },
-                "options": {
-                  "$id": "enumArray",
-                  "type": "array",
-                  "items": {
-                    "type": "string"
+                {
+                  "properties": {
+                    "value": {
+                      "type": "number"
+                    }
+                  }
+                },
+                {
+                  "properties": {
+                    "options": {
+                      "type": "array",
+                      "description": "",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "value": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "description": "A default value for the specified options. Must be one of specified options. Must not be null/undefined."
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "properties": {
+                    "value": {
+                      "type": "boolean"
+                    }
                   }
                 }
-              }
-            },
-            {
-              "properties": {
-                "value": {
-                  "type": "boolean"
-                }
-              }
+              ]
             }
-          ]
+          }
         }
-      }
+      ]
     }
-  ]
+  }
 }
