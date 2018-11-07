@@ -7,6 +7,7 @@ import {RastriginFunction} from './rastrigin-function/rastrigin-function';
 import {RosenbrockFunction} from './rosenbrock-function/rosenbrock-function';
 import {GoldensteinFunction} from './goldenstein-function/goldenstein-function';
 import {SphereFunction} from './sphere-function/sphere-function';
+import {BukinFunction} from './bukin-function/bukin-function';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,8 @@ export class OptimizationProviderService {
       new RastriginFunction(),
       new RosenbrockFunction(),
       new GoldensteinFunction(),
-      new SphereFunction()
+      new SphereFunction(),
+      new BukinFunction()
     ];
   }
 
