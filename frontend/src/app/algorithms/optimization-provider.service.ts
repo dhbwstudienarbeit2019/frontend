@@ -13,6 +13,7 @@ import {LeviFunction} from './levi-function/levi-function';
 import {HimmelblauFunction} from './himmelblau-function/himmelblau-function';
 import {ThreeHumpCamelFunction} from './threehumpcamel-function/three-hump-camel-function';
 import {EasomFunction} from './easom-function/easom-function';
+import {CrossInTrayFunction} from './cross-in-tray-function/cross-in-tray-function';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +34,8 @@ export class OptimizationProviderService {
       new LeviFunction(),
       new HimmelblauFunction(),
       new ThreeHumpCamelFunction(),
-      new EasomFunction()
+      new EasomFunction(),
+      new CrossInTrayFunction()
     ];
   }
 
