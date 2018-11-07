@@ -2,7 +2,7 @@ import {OptimizationAlgorithmInterface} from '../optimization-algorithm.interfac
 
 export class GoldensteinFunction implements OptimizationAlgorithmInterface {
   readonly description = '';
-  readonly name = 'Sphere';
+  readonly name = 'Goldenstein';
   readonly func = (x: number, y: number) => {
     const pt1 = x + y + 1;
     const pt2 = 19 - 14 * x + 3 * x * x - 14 * y + 6 * x * y + 3 * y * y;
