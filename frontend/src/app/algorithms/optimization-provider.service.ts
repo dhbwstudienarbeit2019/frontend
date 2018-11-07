@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {OptimizationAlgorithmInterface} from './optimization-algorithm.interface';
+import {AckleyFunction} from './ackley-function/ackley-function';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ import {OptimizationAlgorithmInterface} from './optimization-algorithm.interface
 export class OptimizationProviderService {
 
   constructor() {
-    this.algorithms = [];
+    this.algorithms = [new AckleyFunction()];
   }
 
   private readonly algorithms: OptimizationAlgorithmInterface[];
