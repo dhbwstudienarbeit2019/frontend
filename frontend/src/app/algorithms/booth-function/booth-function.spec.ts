@@ -3,7 +3,9 @@ import {BoothFunction} from './booth-function';
 
 
 describe('BoothFunction', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  beforeEach(() => TestBed.configureTestingModule({
+    providers: [BoothFunction]
+  }));
 
   it('should be created', () => {
     const service: BoothFunction = TestBed.get(BoothFunction);
