@@ -11,6 +11,7 @@ import {BukinFunction} from './bukin-function/bukin-function';
 import {MatyasFunction} from './matyas-function/matyas-function';
 import {LeviFunction} from './levi-function/levi-function';
 import {HimmelblauFunction} from './himmelblau-function/himmelblau-function';
+import {ThreeHumpCamelFunction} from './threehumpcamel-function/three-hump-camel-function';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +30,8 @@ export class OptimizationProviderService {
       new BukinFunction(),
       new MatyasFunction(),
       new LeviFunction(),
-      new HimmelblauFunction()
+      new HimmelblauFunction(),
+      new ThreeHumpCamelFunction()
     ];
   }
 
