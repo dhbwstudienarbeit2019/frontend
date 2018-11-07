@@ -10,6 +10,7 @@ import {SphereFunction} from './sphere-function/sphere-function';
 import {BukinFunction} from './bukin-function/bukin-function';
 import {MatyasFunction} from './matyas-function/matyas-function';
 import {LeviFunction} from './levi-function/levi-function';
+import {HimmelblauFunction} from './himmelblau-function/himmelblau-function';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,8 @@ export class OptimizationProviderService {
       new SphereFunction(),
       new BukinFunction(),
       new MatyasFunction(),
-      new LeviFunction()
+      new LeviFunction(),
+      new HimmelblauFunction()
     ];
   }
 
