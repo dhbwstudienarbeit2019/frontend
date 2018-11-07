@@ -9,6 +9,7 @@ import {GoldensteinFunction} from './goldenstein-function/goldenstein-function';
 import {SphereFunction} from './sphere-function/sphere-function';
 import {BukinFunction} from './bukin-function/bukin-function';
 import {MatyasFunction} from './matyas-function/matyas-function';
+import {LeviFunction} from './levi-function/levi-function';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,8 @@ export class OptimizationProviderService {
       new GoldensteinFunction(),
       new SphereFunction(),
       new BukinFunction(),
-      new MatyasFunction()
+      new MatyasFunction(),
+      new LeviFunction()
     ];
   }
 
