@@ -12,6 +12,7 @@ import {MatyasFunction} from './matyas-function/matyas-function';
 import {LeviFunction} from './levi-function/levi-function';
 import {HimmelblauFunction} from './himmelblau-function/himmelblau-function';
 import {ThreeHumpCamelFunction} from './threehumpcamel-function/three-hump-camel-function';
+import {EasomFunction} from './easom-function/easom-function';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +32,8 @@ export class OptimizationProviderService {
       new MatyasFunction(),
       new LeviFunction(),
       new HimmelblauFunction(),
-      new ThreeHumpCamelFunction()
+      new ThreeHumpCamelFunction(),
+      new EasomFunction()
     ];
   }
 
