@@ -3,69 +3,106 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Parameters",
   "type": "object",
+  "required": [
+    "item"
+  ],
   "properties": {
     "item": {
       "type": "array",
-      "items": [
+      "anyOf": [
         {
+          "required": [
+            "name",
+            "description",
+            "parameter"
+          ],
           "properties": {
             "name": {
               "type": "string",
-              "description": "Name of the parameter"
+              "description": "Name of the range parameter"
+            },
+            "title": {
+              "type": "string",
+              "description": "If your parameter name isn't human friendly, use title to override the shown name."
             },
             "description": {
               "type": "string",
-              "description": "A short description what the parameter does"
+              "description": "A short description what the range of the parameter does"
             },
             "parameter": {
-              "anyOf": [
-                {
-                  "properties": {
-                    "minimum": {
-                      "type": "number"
-                    },
-                    "value": {
-                      "type": "number"
-                    },
-                    "maximum": {
-                      "type": "number"
-                    }
-                  }
+              "properties": {
+                "minimum": {
+                  "type": "number"
                 },
-                {
-                  "properties": {
-                    "value": {
-                      "type": "number"
-                    }
-                  }
+                "value": {
+                  "type": "number"
                 },
-                {
-                  "properties": {
-                    "options": {
-                      "type": "array",
-                      "description": "",
-                      "items": {
-                        "type": "string"
-                      }
-                    },
-                    "value": {
-                      "oneOf": [
-                        {
-                          "type": "string",
-                          "description": "A default value for the specified options. Must be one of specified options. Must not be null/undefined."
-                        }
-                      ]
-                    }
-                  }
-                },
-                {
-                  "properties": {
-                    "value": {
-                      "type": "boolean"
-                    }
-                  }
+                "maximum": {
+                  "type": "number"
                 }
-              ]
+              }
+            }
+          }
+        },
+        {
+          "required": [
+            "name",
+            "description",
+            "parameter"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Name of the boolean parameter"
+            },
+            "title": {
+              "type": "string",
+              "description": "If your parameter name isn't human friendly, use title to override the shown name."
+            },
+            "description": {
+              "type": "string",
+              "description": "A short description what the boolean parameter is for"
+            },
+            "parameter": {
+              "required": [
+                "value"
+              ],
+              "properties": {
+                "value": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        },
+        {
+          "required": [
+            "name",
+            "description",
+            "parameter"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Name of the number parameter"
+            },
+            "title": {
+              "type": "string",
+              "description": "If your parameter name isn't human friendly, use title to override the shown name."
+            },
+            "description": {
+              "type": "string",
+              "description": "A short description what the number parameter does"
+            },
+            "parameter": {
+              "required": [
+                "value"
+              ],
+              "properties": {
+                "value": {
+                  "type": "number"
+                }
+              }
             }
           }
         }
