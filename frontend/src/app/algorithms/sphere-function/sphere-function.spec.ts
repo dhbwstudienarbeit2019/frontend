@@ -2,7 +2,7 @@ import {TestBed} from '@angular/core/testing';
 import {SphereFunction} from './sphere-function';
 
 
-describe('BoothFunction', () => {
+describe('SphereFunction', () => {
   beforeEach(() => TestBed.configureTestingModule({
     providers: [SphereFunction]
   }));
