@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {OptimizationAlgorithmInterface} from './optimization-algorithm.interface';
 import {AckleyFunction} from './ackley-function/ackley-function';
 import {BealeFunction} from './beale-function/beale-function';
+import {BoothFunction} from './booth-function/booth-function';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ export class OptimizationProviderService {
   constructor() {
     this.algorithms = [
       new AckleyFunction(),
-      new BealeFunction()
+      new BealeFunction(),
+      new BoothFunction()
     ];
   }
 
