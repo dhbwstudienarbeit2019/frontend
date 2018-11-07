@@ -8,6 +8,7 @@ import {RosenbrockFunction} from './rosenbrock-function/rosenbrock-function';
 import {GoldensteinFunction} from './goldenstein-function/goldenstein-function';
 import {SphereFunction} from './sphere-function/sphere-function';
 import {BukinFunction} from './bukin-function/bukin-function';
+import {MatyasFunction} from './matyas-function/matyas-function';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,8 @@ export class OptimizationProviderService {
       new RosenbrockFunction(),
       new GoldensteinFunction(),
       new SphereFunction(),
-      new BukinFunction()
+      new BukinFunction(),
+      new MatyasFunction()
     ];
   }
 
