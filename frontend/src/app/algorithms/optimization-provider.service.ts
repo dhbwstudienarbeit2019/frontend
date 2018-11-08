@@ -17,6 +17,7 @@ import {CrossInTrayFunction} from './cross-in-tray-function/cross-in-tray-functi
 import {HoelderTableFunction} from './hoelder-table-function/hoelder-table-function';
 import {EggholderFunction} from './eggholder-function/eggholder-function';
 import {McCormickFunction} from './mc-cormick-function/mc-cormick-function';
+import {SchafferN2Function} from './schaffer-n2-function/schaffer-n2-function';
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +42,8 @@ export class OptimizationProviderService {
       new CrossInTrayFunction(),
       new HoelderTableFunction(),
       new EggholderFunction(),
-      new McCormickFunction()
+      new McCormickFunction(),
+      new SchafferN2Function()
     ];
   }
 
