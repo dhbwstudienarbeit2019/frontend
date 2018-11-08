@@ -16,6 +16,7 @@ import {EasomFunction} from './easom-function/easom-function';
 import {CrossInTrayFunction} from './cross-in-tray-function/cross-in-tray-function';
 import {HoelderTableFunction} from './hoelder-table-function/hoelder-table-function';
 import {EggholderFunction} from './eggholder-function/eggholder-function';
+import {McCormickFunction} from './mc-cormick-function/mc-cormick-function';
 
 @Injectable({
   providedIn: 'root'
@@ -39,7 +40,8 @@ export class OptimizationProviderService {
       new EasomFunction(),
       new CrossInTrayFunction(),
       new HoelderTableFunction(),
-      new EggholderFunction()
+      new EggholderFunction(),
+      new McCormickFunction()
     ];
   }
 
