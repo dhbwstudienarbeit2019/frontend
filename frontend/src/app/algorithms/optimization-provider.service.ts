@@ -14,6 +14,7 @@ import {HimmelblauFunction} from './himmelblau-function/himmelblau-function';
 import {ThreeHumpCamelFunction} from './threehumpcamel-function/three-hump-camel-function';
 import {EasomFunction} from './easom-function/easom-function';
 import {CrossInTrayFunction} from './cross-in-tray-function/cross-in-tray-function';
+import {HoelderTableFunction} from './hoelder-table-function/hoelder-table-function';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +36,8 @@ export class OptimizationProviderService {
       new HimmelblauFunction(),
       new ThreeHumpCamelFunction(),
       new EasomFunction(),
-      new CrossInTrayFunction()
+      new CrossInTrayFunction(),
+      new HoelderTableFunction()
     ];
   }
 
