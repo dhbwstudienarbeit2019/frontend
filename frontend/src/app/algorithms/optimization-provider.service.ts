@@ -19,6 +19,7 @@ import {EggholderFunction} from './eggholder-function/eggholder-function';
 import {McCormickFunction} from './mc-cormick-function/mc-cormick-function';
 import {SchafferN2Function} from './schaffer-n2-function/schaffer-n2-function';
 import {SchafferN4Function} from './schaffer-n4-function/schaffer-n4-function';
+import {StyblinskiTangFunction} from './styblinksi-tang-function/styblinski-tang-function';
 
 @Injectable({
   providedIn: 'root'
@@ -45,7 +46,8 @@ export class OptimizationProviderService {
       new EggholderFunction(),
       new McCormickFunction(),
       new SchafferN2Function(),
-      new SchafferN4Function()
+      new SchafferN4Function(),
+      new StyblinskiTangFunction()
     ];
   }
 
