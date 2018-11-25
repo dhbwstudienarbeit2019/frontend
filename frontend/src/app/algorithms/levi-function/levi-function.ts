@@ -11,5 +11,5 @@ export class LeviFunction implements OptimizationAlgorithmInterface {
         const pt4 = 1 + pt0(2 * y) * pt0(2 * y);
         return pt0(3 * x) * pt0(3 * x) + pt1 * pt1 * pt2 + pt3 * pt3 * pt4;
     };
-
+    public readonly searchArea: { min: { x: -10, y: -10 }, max: { x: 10, y: 10 } };
 }
