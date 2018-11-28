@@ -2,21 +2,34 @@
   "$id": "https://raw.githubusercontent.com/dhbwstudienarbeit2019/frontend/parameter-scheme/frontend/src/schema/parameters.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Parameters",
-  "type": "array",
-  "items": [
-    {
-      "properties": {
-        "name": {
-          "type": "string",
-          "description": "Name of the parameter"
-        },
-        "description": {
-          "type": "string",
-          "description": "A short description what the parameter does"
-        },
-        "parameter": {
-          "oneOf": [
-            {
+  "type": "object",
+  "required": [
+    "item"
+  ],
+  "properties": {
+    "item": {
+      "type": "array",
+      "anyOf": [
+        {
+          "required": [
+            "name",
+            "description",
+            "parameter"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Name of the range parameter"
+            },
+            "title": {
+              "type": "string",
+              "description": "If your parameter name isn't human friendly, use title to override the shown name."
+            },
+            "description": {
+              "type": "string",
+              "description": "A short description what the range of the parameter does"
+            },
+            "parameter": {
               "properties": {
                 "minimum": {
                   "type": "number"
@@ -28,42 +41,72 @@
                   "type": "number"
                 }
               }
+            }
+          }
+        },
+        {
+          "required": [
+            "name",
+            "description",
+            "parameter"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Name of the boolean parameter"
             },
-            {
-              "properties": {
-                "value": {
-                  "type": "number"
-                }
-              }
+            "title": {
+              "type": "string",
+              "description": "If your parameter name isn't human friendly, use title to override the shown name."
             },
-            {
-              "properties": {
-                "value": {
-                  "oneOf": [
-                    {
-                      "$ref": "enumArray"
-                    }
-                  ]
-                },
-                "options": {
-                  "$id": "enumArray",
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                }
-              }
+            "description": {
+              "type": "string",
+              "description": "A short description what the boolean parameter is for"
             },
-            {
+            "parameter": {
+              "required": [
+                "value"
+              ],
               "properties": {
                 "value": {
                   "type": "boolean"
                 }
               }
             }
-          ]
+          }
+        },
+        {
+          "required": [
+            "name",
+            "description",
+            "parameter"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Name of the number parameter"
+            },
+            "title": {
+              "type": "string",
+              "description": "If your parameter name isn't human friendly, use title to override the shown name."
+            },
+            "description": {
+              "type": "string",
+              "description": "A short description what the number parameter does"
+            },
+            "parameter": {
+              "required": [
+                "value"
+              ],
+              "properties": {
+                "value": {
+                  "type": "number"
+                }
+              }
+            }
+          }
         }
-      }
+      ]
     }
-  ]
+  }
 }
