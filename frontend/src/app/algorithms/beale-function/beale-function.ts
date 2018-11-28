@@ -9,6 +9,10 @@ export class BealeFunction implements OptimizationAlgorithmInterface {
             (2.25 - x + x * y * y),
             (2.625 - x + x * y * y * y)
         ].map(result => result * result).reduce((a, b) => a + b);
-    }
+    };
+    public readonly searchArea = {
+        min: {x: -4.5, y: -4.5},
+        max: {x: 4.5, y: 4.5}
+    };
 
 }

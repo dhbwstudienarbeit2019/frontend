@@ -7,6 +7,10 @@ export class RosenbrockFunction implements OptimizationAlgorithmInterface {
         const yxx = (y - x * x);
         const ydif = 1 - x;
         return 100 * yxx * yxx + ydif * ydif;
-    }
+    };
+    public readonly searchArea = {
+        min: {x: Number.NEGATIVE_INFINITY, y: Number.NEGATIVE_INFINITY},
+        max: {x: Number.POSITIVE_INFINITY, y: Number.POSITIVE_INFINITY}
+    };
 
 }

@@ -11,5 +11,8 @@ export class SchafferN4Function implements OptimizationAlgorithmInterface {
         const dividend = (1 + 0.001 * xxyySum);
         return 0.5 + (cosine - 0.5) / (dividend * dividend);
     };
-
+    public readonly searchArea = {
+        min: {x: -100, y: -100},
+        max: {x: 100, y: 100}
+    };
 }
