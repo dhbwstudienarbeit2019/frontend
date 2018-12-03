@@ -3,6 +3,10 @@ import {OptimizationAlgorithmInterface} from '../optimization-algorithm.interfac
 export class SchafferN4Function implements OptimizationAlgorithmInterface {
     public readonly description = '';
     public readonly name = 'Schaffer N. 4';
+    public readonly searchArea = {
+        min: {x: -100, y: -100},
+        max: {x: 100, y: 100}
+    };
     public readonly func = (x: number, y: number) => {
         const xxyyDif = x * x - y * y;
         const xxyySum = x * x + y * y;
@@ -10,9 +14,5 @@ export class SchafferN4Function implements OptimizationAlgorithmInterface {
         const cosine = Math.cos(sine) * Math.cos(sine);
         const dividend = (1 + 0.001 * xxyySum);
         return 0.5 + (cosine - 0.5) / (dividend * dividend);
-    };
-    public readonly searchArea = {
-        min: {x: -100, y: -100},
-        max: {x: 100, y: 100}
-    };
+    }
 }

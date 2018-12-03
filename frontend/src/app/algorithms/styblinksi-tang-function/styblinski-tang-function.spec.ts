@@ -16,4 +16,39 @@ describe('Styblinski–Tang function', () => {
     const service: StyblinskiTangFunction = TestBed.get(StyblinskiTangFunction);
     expect(service.func(param, param)).toBeCloseTo(result, 4);
   });
+  it('should be defined at max-x, max-y', () => {
+    const service: StyblinskiTangFunction = TestBed.get(StyblinskiTangFunction);
+    const x = service.searchArea.max.x;
+    const y = service.searchArea.max.y;
+    expect(service.func(x, y)).toBeDefined();
+    expect(service.func(x, y)).not.toBeNaN();
+  });
+  it('should be defined at max-x, min-y', () => {
+    const service: StyblinskiTangFunction = TestBed.get(StyblinskiTangFunction);
+    const x = service.searchArea.max.x;
+    const y = service.searchArea.min.y;
+    expect(service.func(x, y)).toBeDefined();
+    expect(service.func(x, y)).not.toBeNaN();
+  });
+  it('should be defined at min-x, min-y', () => {
+    const service: StyblinskiTangFunction = TestBed.get(StyblinskiTangFunction);
+    const x = service.searchArea.min.x;
+    const y = service.searchArea.min.y;
+    expect(service.func(x, y)).toBeDefined();
+    expect(service.func(x, y)).not.toBeNaN();
+  });
+  it('should be defined at max-x, min-y', () => {
+    const service: StyblinskiTangFunction = TestBed.get(StyblinskiTangFunction);
+    const x = service.searchArea.min.x;
+    const y = service.searchArea.max.y;
+    expect(service.func(x, y)).toBeDefined();
+    expect(service.func(x, y)).not.toBeNaN();
+  });
+
+  it('should be serializable', () => {
+    const service: StyblinskiTangFunction = TestBed.get(StyblinskiTangFunction);
+    const { x, y } = service.searchArea.max;
+    const funcAsStr = service.func.toString();
+    expect(service.func(x, y)).toBeCloseTo(new Function('return ' + funcAsStr)()(x, y), 10);
+  });
 });

@@ -1,0 +1,18 @@
+<div>test</div>
+
+<app-wiki-entry [repo]="algorithmInfo">
+
+</app-wiki-entry>
+<app-parameters *ngIf="algorithmInfo" [parameterUrl]="algorithmInfo.parameterJsonUrl">
+
+</app-parameters>
+<div class="mb-5">
+    <h3>Select an optimization function:</h3>
+    <div>
+        <select>
+            <option *ngFor="let func of functions">{{func.name}}</option></select>
+    </div>
+  <app-graph *ngIf="Algorithmesults && FunctionResults" [LinePoints]="Algorithmesults" [SurfacePoints]="FunctionResults">
+
+  </app-graph>
+</div>

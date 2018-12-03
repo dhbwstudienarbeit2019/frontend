@@ -1,10 +1,22 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { FunctionsPageComponent } from './functions-page/functions-page.component';
+import { AlgorithmsPageComponent } from './algorithms-page/algorithms-page.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: 'functions/:algorithmName',
+    component: FunctionsPageComponent
+  },
+  {
+    path: 'algorithms/:algorithmName',
+    component: AlgorithmsPageComponent
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

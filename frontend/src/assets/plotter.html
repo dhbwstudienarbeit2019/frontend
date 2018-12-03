@@ -1,0 +1,126 @@
+<html>
+
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <style>
+    html {
+      overflow: hidden;
+    }
+
+    .infolayer {
+      visibility: collapse;
+    }
+
+  </style>
+</head>
+
+<body>
+  <!-- Plotly chart will be drawn inside this DIV -->
+  <div id="graph" style="width:100%;height:100%"></div>
+  <script>
+    function draw(inputData) {
+      console.log({
+        'received data:': inputData
+      });
+      const cutTwoDigits = x => parseFloat(x.toFixed(5));
+      const surfaceData = inputData.data.surfaceData; // array of array of value-points
+      const lineData = inputData.data.lineData;
+      const allDots = [];
+      surfaceData.map(dotArray => dotArray.map(dot => allDots.push(dot)));
+      const zDots = surfaceData.map(dotArray =>
+        // dotArray.map(dot => [dot.x, dot.y, dot.value])
+        [
+          ...dotArray.map(dot => dot.x),
+          ...dotArray.map(dot => dot.y),
+          ...dotArray.map(dot => dot.value)
+        ]
+      );
+
+      const valueMin = Math.min(...allDots.map(dot => dot.value));
+      const valueMax = Math.min(...allDots.map(dot => dot.value));
+      const xMin = Math.min(...allDots.map(dot => dot.x));
+      const xMax = Math.max(...allDots.map(dot => dot.x));
+
+      const yMin = Math.min(...allDots.map(dot => dot.y));
+      const yMax = Math.max(...allDots.map(dot => dot.x));
+      console.log({
+        zDots,
+        yMin,
+        yMax,
+        xMax,
+        xMin
+      });
+      const data = [{
+          z: surfaceData.map(dotArray => dotArray.map(dot => dot.value)),
+          type: "surface",
+          /*  type: 'mesh3d',
+            z: allDots.map(dot => dot.value),
+            x: allDots.map(dot => dot.x),
+            y: allDots.map(dot => dot.y),*/
+
+        },
+        /*  {
+            x: [0, 1],
+            y: [0, 1],
+            z: [0, 1],
+            mode: "markers",
+            marker: {
+              size: 2,
+              color: 'rgb(0,0,0)',
+              line: {
+                color: "rgba(0, 0, 0, 0.5)",
+                width: 0.5
+              },
+              opacity: 0.8
+            },
+            type: "scatter3d",
+          }*/
+      ];
+      Plotly.newPlot("graph", data, {
+        showlegend: false,
+        height: 500,
+        width: 500,
+        opacity: 0.5,
+        scene: {
+          aspectmode: "auto",
+
+          /*  xaxis: {
+              range: [xMin, xMax],
+              nticks: 10
+              /*tick0: yMin,
+              ticklen: surfaceData.length,
+              dtick: (yMax - yMin) / surfaceData.length*
+            },
+            yaxis: {
+              range: [yMin, yMax],
+              nticks: 10
+              /* tick0: xMin,
+               dtick: (xMax - xMin) / surfaceData[0].length,
+               ticklen: surfaceData[0].length*
+            },
+            zaxis: {
+              nticks: 10,
+              range: [valueMin, valueMax],
+            }*/
+        },
+
+        margin: {
+          l: 50,
+          r: 50,
+          b: 50,
+          t: 50
+        }
+      });
+    }
+    window.addEventListener('message', draw);
+    console.log('registered');
+    if (window.parent) {
+      window.parent.postMessage('givemestuff', '*');
+    }
+    //   draw();
+
+  </script>
+</body>
+
+</html>
