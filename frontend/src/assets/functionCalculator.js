@@ -1,12 +1,22 @@
 let isRunning = false;
-let isFinished = false;
 let func = () => 0;
-let config;
+let stepsX = 50;
+let stepsY = 50;
+let searchArea = {
+  min: {
+    x: -1,
+    y: -1
+  },
+  max: {
+    x: 1,
+    y: 1
+  },
+}
 addEventListener('message', (message) => {
   try {
     let data = message.data;
-    config = data.config;
-    func = data.func;
+    searchArea = data.searchArea;
+    func = new Function('return ' + data.func)();
     if (data.action === 'abort') {
       isRunning = false;
     }
@@ -15,22 +25,28 @@ addEventListener('message', (message) => {
       status: "finished",
       result: runCode()
     });
-  }
-  catch (e) {
-    postMessage({info: e.toString(), result: [], status: "error"});
+  } catch (e) {
+    postMessage({
+      info: e.toString(),
+      result: [],
+      status: "error"
+    });
   }
 });
 
 function runCode() {
   isRunning = true;
-  isFinished = false;
   const result = [];
-  const xStepSize = (config.maxX - config.minX) / config.stepsX;
-  const yStepSize = (config.maxY - config.minY) / config.stepsY;
-  for (let x = config.minX; x <= config.maxX && isRunning; x += xStepSize) {
+  const xStepSize = (searchArea.max.x - searchArea.min.x) / stepsX;
+  const yStepSize = (searchArea.max.y - searchArea.min.y) / stepsY;
+  for (let x = searchArea.min.x; x <= searchArea.max.x && isRunning; x += xStepSize) {
     const subresults = [];
-    for (let y = config.minY; y <= config.maxY; y += yStepSize) {
-      subresults.push(func(x, y));
+    for (let y = searchArea.min.y; y <= searchArea.max.y; y += yStepSize) {
+      subresults.push({
+        x,
+        y,
+        value: func(x, y)
+      });
     }
     result.push(subresults);
   }
@@ -39,6 +55,5 @@ function runCode() {
     return result;
   }
   isRunning = false;
-  isFinished = true;
   return result;
 }

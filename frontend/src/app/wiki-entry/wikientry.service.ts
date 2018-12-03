@@ -1,3 +1,5 @@
+import { OptimizationAlgorithmInterface } from '../algorithms/optimization-algorithm.interface';
+
 export class WikientryService {
   constructor() {
 
@@ -8,7 +10,7 @@ export class WikientryService {
     const cdnUrl = 'https://cdn.jsdelivr.net/gh/';
     const githubBaseUrl = 'https://github.com/';
     if (!repository.startsWith(githubBaseUrl)) {
-      console.log({'Invalid Url:': repository});
+      console.log({ 'Invalid Url:': repository });
       throw new Error(repository + ' is invalid');
     }
     const repoLocation = repository.substr(repository.length);

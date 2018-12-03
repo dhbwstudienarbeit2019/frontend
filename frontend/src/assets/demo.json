@@ -1,0 +1,26 @@
+{
+  "$schema": "https://raw.githubusercontent.com/dhbwstudienarbeit2019/frontend/parameter-scheme/frontend/src/schema/parameters.schema.json",
+  "item": [
+    {
+      "name": "Demo range parameter",
+      "description": "demo of a range parameter",
+      "parameter": {
+        "value": 1,
+        "maximum": 10,
+        "minimum": 1
+      }
+    },
+    {
+      "name": "Demo number parameter",
+      "description": "demo of an unlimited number parameter",
+      "parameter": {
+        "value": 10
+      }
+    },
+    {
+      "name": "Demo bool parameter",
+      "description": "demo of a bool parameter",
+      "enabled": true
+    }
+  ]
+}
