@@ -1,5 +1,5 @@
 {
-  "$schema": "./parameters.schema.json",
+  "$schema": "https://raw.githubusercontent.com/dhbwstudienarbeit2019/frontend/parameter-scheme/frontend/src/schema/parameters.schema.json",
   "item": [
     {
       "name": "Demo range parameter",
@@ -20,7 +20,7 @@
     {
       "name": "Demo bool parameter",
       "description": "demo of a bool parameter",
-      "value": true
+      "enabled": true
     }
   ]
 }

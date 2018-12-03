@@ -27,7 +27,7 @@ import {StyblinskiTangFunction} from './styblinksi-tang-function/styblinski-tang
 export class OptimizationProviderService {
 
   constructor() {
-    this.algorithms = [
+    this.functions = [
       new AckleyFunction(),
       new BealeFunction(),
       new BoothFunction(),
@@ -51,9 +51,9 @@ export class OptimizationProviderService {
     ];
   }
 
-  private readonly algorithms: OptimizationAlgorithmInterface[];
+  private readonly functions: OptimizationAlgorithmInterface[];
 
-  public get Algorithms() {
-    return this.algorithms;
+  public get Functions() {
+    return this.functions;
   }
 }
