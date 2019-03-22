@@ -9,7 +9,6 @@ import { HttpClient } from '@angular/common/http';
 export class ParametersComponent implements OnInit {
 
   constructor(private readonly httpClient: HttpClient) {
-
   }
 
   private previousParameterUrl = '';
@@ -43,8 +42,21 @@ export class ParametersComponent implements OnInit {
     }
     return 'number';
   }
-
-
+  public makeObject() {
+    const parameters = {};
+    this.parameterConfig.map(paramConfig => {
+      if (paramConfig === undefined) {
+        console.log('undefined paramconfig');
+      }
+      const type = this.getParamType(paramConfig);
+      if (type === 'boolean') {
+        parameters[paramConfig.name] = paramConfig.parameter.enabled;
+      } else if (type === 'number' || type === 'range') {
+        parameters[paramConfig.name] = paramConfig.parameter.value;
+      }
+    });
+    return parameters;
+  }
 
   ngOnInit() {
   }

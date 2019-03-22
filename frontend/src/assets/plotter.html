@@ -25,6 +25,10 @@
       });
       const cutTwoDigits = x => parseFloat(x.toFixed(5));
       const surfaceData = inputData.data.surfaceData; // array of array of value-points
+      if (surfaceData === undefined) {
+        console.log('invalid data!');
+        return;
+      }
       const lineData = inputData.data.lineData;
       const allDots = [];
       surfaceData.map(dotArray => dotArray.map(dot => allDots.push(dot)));
@@ -36,6 +40,12 @@
           ...dotArray.map(dot => dot.value)
         ]
       );
+      const colorScale = {
+        z: [
+          [0, 0, 50, 0, 100],
+          [100, 100, 50, 0, 0]
+        ]
+      };
 
       const valueMin = Math.min(...allDots.map(dot => dot.value));
       const valueMax = Math.min(...allDots.map(dot => dot.value));
@@ -49,60 +59,67 @@
         yMin,
         yMax,
         xMax,
-        xMin
+        xMin,
+        surfaceData
       });
-      const data = [{
-          z: surfaceData.map(dotArray => dotArray.map(dot => dot.value)),
-          type: "surface",
-          /*  type: 'mesh3d',
-            z: allDots.map(dot => dot.value),
-            x: allDots.map(dot => dot.x),
-            y: allDots.map(dot => dot.y),*/
+      const xSet = new Set(allDots.map(dot => dot.x));
+      const ySet = new Set(allDots.map(dot => dot.y));
+      const ar = [];
+      allDots.map(dot => ar[dot.x] = []);
+      allDots.map(dot => ar[dot.x][dot.y] = dot.value);
 
-        },
-        /*  {
-            x: [0, 1],
-            y: [0, 1],
-            z: [0, 1],
-            mode: "markers",
-            marker: {
-              size: 2,
-              color: 'rgb(0,0,0)',
-              line: {
-                color: "rgba(0, 0, 0, 0.5)",
-                width: 0.5
-              },
-              opacity: 0.8
-            },
-            type: "scatter3d",
-          }*/
-      ];
-      Plotly.newPlot("graph", data, {
-        showlegend: false,
-        height: 500,
-        width: 500,
+      function createAxis(min, max, values, count) {
+        const shownIndices = [];
+        const shownValues = [];
+        const sortedValues = Array.from(new Set(values.filter(nr =>
+            nr !== Number.NEGATIVE_INFINITY &&
+            nr !== Number.POSITIVE_INFINITY &&
+            !isNaN(nr))))
+          .sort((a, b) => a - b);
+        for (let i = 0; i < count; i++) {
+          const idx = Math.floor(sortedValues.length * (i / count));
+          shownIndices.push(idx);
+          shownValues.push(sortedValues[idx]);
+        }
+        shownIndices.push(sortedValues.length - 1);
+        shownValues.push(max);
+        return {
+          values: shownValues.map(value => value.toFixed(Math.min(0, 4 - Math.log10(Math.abs(value))))),
+          indices: shownIndices
+        };
+      }
+
+      const xaxis = createAxis(xMin, xMax, allDots.map(dot => dot.x), 10);
+      const yaxis = createAxis(yMin, yMax, allDots.map(dot => dot.y), 10);
+
+      const layout = {
+        showlegend: true,
+        height: 800,
+        width: 800,
         opacity: 0.5,
         scene: {
           aspectmode: "auto",
+          xaxis: {
+            zerolinecolor: 'rgb(255, 0, 0)',
+            ticktext: xaxis.values,
+            tickvals: xaxis.indices,
+          },
+          yaxis: {
 
-          /*  xaxis: {
-              range: [xMin, xMax],
-              nticks: 10
-              /*tick0: yMin,
-              ticklen: surfaceData.length,
-              dtick: (yMax - yMin) / surfaceData.length*
-            },
-            yaxis: {
-              range: [yMin, yMax],
-              nticks: 10
-              /* tick0: xMin,
-               dtick: (xMax - xMin) / surfaceData[0].length,
-               ticklen: surfaceData[0].length*
-            },
-            zaxis: {
-              nticks: 10,
-              range: [valueMin, valueMax],
-            }*/
+            zerolinecolor: 'rgb(255, 0, 0)',
+            ticktext: yaxis.values,
+            tickvals: yaxis.indices,
+            /* nticks: 10,
+             tick0: xMin,
+             /* dtick: (xMax - xMin) / surfaceData[0].length,
+              ticklen: surfaceData[0].length*/
+          },
+          zaxis: {
+            zerolinecolor: 'rgb(255, 0, 0)',
+            nticks: 10,
+            //  range: [valueMin, valueMax]
+
+          },
         },
 
         margin: {
@@ -111,8 +128,50 @@
           b: 50,
           t: 50
         }
+      };
+      const data = [{
+          hoverinfo: 'z',
+          text: 'tex',
+          z: surfaceData.map(dotArray => dotArray.map(dot => dot.value)),
+          type: "surface",
+          colorscale: colorScale
+          /*  type: 'mesh3d',*/
+          /* z: allDots.map(dot => dot.value),
+           x: allDots.map(dot => dot.x),
+           y: allDots.map(dot => dot.y)*/
+
+        },
+        {
+          x: [0, 25, 50],
+          y: [0, 25, 50],
+          z: [1, 1, 1],
+          mode: "markers",
+          name: 'trace2',
+
+          /* xaxis: {
+             domain: [-0.5, 0.5],
+           },*/
+          marker: {
+            size: [1, 30, 1],
+            color: 'rgb(0,0,0)',
+
+            line: {
+              color: "rgba(0, 0, 0, 0.5)",
+              width: 0.5
+            },
+            opacity: 0.8
+          },
+          type: "scatter3d",
+        }
+      ];
+      console.log({
+        data,
+        layout
       });
+      Plotly.newPlot("graph", data, layout);
+
     }
+
     window.addEventListener('message', draw);
     console.log('registered');
     if (window.parent) {

@@ -4,6 +4,8 @@ import { AlgorithmsPageComponent } from './algorithms-page.component';
 import { WikiEntryComponent } from '../wiki-entry/wiki-entry.component';
 import { MarkdownComponent, MarkdownService, MarkdownModule } from 'ngx-markdown';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ParametersComponent } from '../parameters/parameters.component';
+import { GraphComponent } from '../graph/graph.component';
 
 describe('AlgorithmsPageComponent', () => {
   let component: AlgorithmsPageComponent;
@@ -11,7 +13,7 @@ describe('AlgorithmsPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AlgorithmsPageComponent, WikiEntryComponent],
+      declarations: [AlgorithmsPageComponent, ParametersComponent, GraphComponent, WikiEntryComponent],
       imports: [
         HttpClientModule,
         MarkdownModule.forRoot({ loader: HttpClient })

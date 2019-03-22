@@ -1,25 +1,24 @@
 <div class="alert alert-dark container">
   <h3>Parameters</h3>
   <div class="row">
-    <div class="col-6" *ngFor="let paramConfig of parameterConfig">
+    <div class="col-md-6 mb-2" *ngFor="let paramConfig of parameterConfig">
       <h5 class="mb-0 pb-0">{{paramConfig.title || paramConfig.name}}</h5>
       <span class="text-muted font-weight-light">{{paramConfig.description}}</span>
       <div *ngIf="getParamType(paramConfig)==='boolean'">
         <div class="custom-control custom-checkbox">
-          <div class="btn" (click)="paramConfig.enabled=!paramConfig.enabled" [ngClass]="{'btn-success':paramConfig.enabled,'btn-danger':!paramConfig.enabled}">
+          <div class="btn btn-sm m-1 mb-2" (click)="paramConfig.enabled=!paramConfig.enabled" [ngClass]="{'btn-success':paramConfig.enabled,'btn-danger':!paramConfig.enabled}">
             <i *ngIf="paramConfig.enabled" class="fa fa-check"></i>
             <i *ngIf="!paramConfig.enabled" class="fa fa-times"></i>
             {{(paramConfig.enabled)?'Enabled':'Disabled'}}
           </div>
-          <input type="checkbox" class="custom-control-input" [value]="paramConfig.parameter.enabled">
         </div>
       </div>
       <div *ngIf="getParamType(paramConfig)==='range'">
-        <input type="range" class="custom-range" [min]="paramConfig.parameter.minimum" [value]="paramConfig.parameter.value"
+        <input type="range" class="custom-range" [min]="paramConfig.parameter.minimum" [(value)]="paramConfig.parameter.value"
           [max]="paramConfig.parameter.maximum" id="range">
       </div>
       <div *ngIf="getParamType(paramConfig)==='number'">
-        <input type="number" class="form-control" [value]="paramConfig.parameter.value" id="range">
+        <input type="number" class="form-control" [(value)]="paramConfig.parameter.value" id="range">
       </div>
       <div *ngIf="getParamType(paramConfig)==='error'">
         <div class="alert alert-danger">Invalid Parameter: {{stringify(paramConfig)}}</div>
