@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+markdown {
+    h1{
+       /* background:#e00;
+        color:#fff;*/
+        border-bottom:#e00 2px solid;
+        padding:4px;
+        display: inline-block;
+    }
+    h2{
+        margin-top:20px;
+    }
+}
