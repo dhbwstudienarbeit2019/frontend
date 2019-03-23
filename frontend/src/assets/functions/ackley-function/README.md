@@ -9,7 +9,7 @@
 |------------------------|---------------|
 | Number of variables    | n             |
 | Definition             | x             |
-| Search domain          | a             |
+| Input domain          | ![alt text](https://latex.codecogs.com/gif.latex?x_i \in)           |
 | Number of local minima | several       |
 | Global minimum         |               |
 
