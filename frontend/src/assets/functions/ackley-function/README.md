@@ -7,7 +7,7 @@
 
 | Attribute              | Name          |
 |------------------------|---------------|
-| Function               | ![alt text](https://latex.codecogs.com/gif.latex?f(x)=10d+)
+| Function               | ![alt text](https://latex.codecogs.com/gif.latex?f(x)=-a\exp(-b\sqrt{a}))
 | Number of variables    | n             |
 | Definition             | x             |
 | Search domain          | a             |
