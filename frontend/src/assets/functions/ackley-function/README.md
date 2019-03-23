@@ -7,14 +7,9 @@
 
 | Attribute              | Name          |
 |------------------------|---------------|
+| Function               | ![alt text](https://latex.codecogs.com/gif.latex?f(x)=10d+)
 | Number of variables    | n             |
 | Definition             | x             |
-<<<<<<< HEAD
 | Search domain          | a             |
-=======
-| Input domain          | ![alt text](https://latex.codecogs.com/gif.latex?x_i \in)           |
->>>>>>> origin/function-descriptions
-| Number of local minima | several       |
-| Global minimum         |               |
 
 ## Plot
