@@ -1,14 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
 markdown {
-    h1{
-       /* background:#e00;
+  h1 {
+    /* background:#e00;
         color:#fff;*/
-        border-bottom:#e00 2px solid;
-        padding:4px;
-        display: table;
+    border-bottom: #e00 2px solid;
+    padding: 4px;
+    display: table;
+  }
+
+  h2 {
+    margin-top: 20px;
+    border-bottom: #888 2px solid;
+  }
+
+
+  td {
+    padding: 5px;
+    padding-left: 10px;
+  }
+
+  thead {
+    th {
+      padding: 5px;
+      background: #343a40 !important;
+      color: #fff;
+      font-weight: normal;
     }
-    h2{
-        margin-top:20px;
-        border-bottom:#888 2px solid;
+  }
+
+  tbody {
+    tr:nth-child(odd) {
+      background: #CCC
     }
+
+    tr:nth-child(even) {
+      background: #FFF
+    }
+  }
+
 }
