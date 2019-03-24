@@ -2,6 +2,9 @@
 
 ## Foundations
 
+- The Rastrigin Function has several local minima.
+- It is highly multimodal, but locations of the minima are regularly distributed.
+
 | Attribute              | Name          |
 |------------------------|---------------|
 | Function               | ![alt text](./assets/functions/ackley-function/rastrigin_function_formula.svg) |
