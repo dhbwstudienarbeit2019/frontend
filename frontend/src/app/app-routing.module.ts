@@ -20,6 +20,10 @@ const routes: Routes = [
   {
     path: 'algorithms',
     component: AlgorithmsListComponent
+  },
+  {
+    path: '**',
+    redirectTo: 'functions/Ackley-Function'
   }
 ];
 
