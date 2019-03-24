@@ -48,7 +48,7 @@ export class OptimizationProviderService {
       new SchafferN2Function(),
       new SchafferN4Function(),
       new StyblinskiTangFunction()
-    ].splice(0, 4);
+    ].splice(0, 5);
   }
 
   private readonly functions: OptimizationAlgorithmInterface[];
