@@ -5,7 +5,7 @@ export class WikientryService {
 
   }
 
-  public getUrls(repository: string): RepositoryInformation {
+  public getUrls(repository: string): RepositoryDetailInformation {
 
     const cdnUrl = 'https://cdn.jsdelivr.net/gh/';
     const githubBaseUrl = 'https://github.com/';
@@ -16,7 +16,7 @@ export class WikientryService {
     const repoLocation = repository.substr(repository.length);
     const parts = repoLocation.split('/');
 
-    return <RepositoryInformation>{
+    return <RepositoryDetailInformation>{
       owner: parts[0],
       name: parts[1],
       markdownUrl: cdnUrl + repoLocation + 'readme.md',
@@ -27,10 +27,19 @@ export class WikientryService {
 
 }
 
-export interface RepositoryInformation {
+export interface RepositoryDetailInformation extends RepositoryInformation {
   markdownUrl: string;
   webworkerUrl: string;
   parameterJsonUrl: string;
   owner: string;
+  description: string;
   name: string;
+  lastUpdated: string;
+}
+export interface RepositoryInformation {
+  owner: string;
+  description: string;
+  name: string;
+  repository: string;
+  lastUpdated: string;
 }

@@ -1,3 +1,20 @@
-<p>
-  algorithms-list works!
-</p>
+<div class="container">
+  <div class="m-3 row">
+    <input class="form-control col mr-2" type="text" placeholder="Search..." [(ngModel)]="searchText">
+    <div class="btn btn-primary col-auto ">
+      <i class="fa fa-search"></i>
+    </div>
+  </div>
+  <div class="card-columns">
+    <a [routerLink]="info.name+'/AckleyFunction'" class="card text-left  " *ngFor="let info of shownAlgorithms">
+      <div class="card-body">
+        <h3 class="">{{info.name}}</h3>
+        <span class="">{{info.description}}</span>
+      </div>
+      <div class="card-footer text-muted d-flex flex-row">
+        <div class="mr-2"> <i class="fa fa-user"></i> {{info.owner}}</div>
+        <div class="mr-2"> <i class="fa fa-calendar"></i> {{info.lastUpdated}}</div>
+      </div>
+    </a>
+  </div>
+</div>

@@ -18,6 +18,7 @@ import { OptimizationProviderService } from './algorithms/optimization-provider.
 import { FunctionsListComponent } from './functions-list/functions-list.component';
 import { AlgorithmsListComponent } from './algorithms-list/algorithms-list.component';
 import { FormsModule } from '@angular/forms';
+import { RepositoryProvider } from './repository-provider';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { FormsModule } from '@angular/forms';
   ],
   providers: [
     WikientryService,
+    RepositoryProvider,
     OptimizationProviderService],
   bootstrap: [AppComponent]
 })

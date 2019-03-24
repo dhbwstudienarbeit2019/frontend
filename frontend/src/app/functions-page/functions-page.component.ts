@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { OptimizationProviderService } from '../algorithms/optimization-provider.service';
 import { OptimizationAlgorithmInterface } from '../algorithms/optimization-algorithm.interface';
-import { RepositoryInformation } from '../wiki-entry/wikientry.service';
+import { RepositoryDetailInformation } from '../wiki-entry/wikientry.service';
 import { WebworkerProviderService } from '../webworker-provider/webworker-provider.service';
 import { StartMessage, FunctionPoint } from '../webworker-provider/message.interface';
 
@@ -52,8 +52,8 @@ export class FunctionsPageComponent implements OnInit {
     }
   }
 
-  public get displayInfo(): RepositoryInformation {
-    return <RepositoryInformation>{
+  public get displayInfo(): RepositoryDetailInformation {
+    return <RepositoryDetailInformation>{
       name: this.functionInfo.name,
       markdownUrl: '/assets/functions/' + this.convertNameToPathname(this.functionInfo.constructor.name) + '/README.md'
     };

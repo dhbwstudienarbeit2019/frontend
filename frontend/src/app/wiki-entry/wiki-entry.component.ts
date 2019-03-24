@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { RepositoryInformation } from './wikientry.service';
+import { RepositoryDetailInformation } from './wikientry.service';
 import { MarkdownComponent, MarkdownService } from 'ngx-markdown';
 import { Renderer } from 'marked';
 
@@ -12,19 +12,22 @@ export class WikiEntryComponent implements OnInit {
 
   @ViewChild('markdown')
   public markdownComponent: MarkdownComponent;
-  private _repo: RepositoryInformation;
+  private _repo: RepositoryDetailInformation;
   constructor(private readonly markdownService: MarkdownService) {
     this._repo = {
       markdownUrl: '',
       name: '',
       owner: '',
       parameterJsonUrl: '',
-      webworkerUrl: ''
+      webworkerUrl: '',
+      description: '',
+      lastUpdated: '',
+      repository: ''
     };
   }
 
   @Input()
-  public set repo(value: RepositoryInformation) {
+  public set repo(value: RepositoryDetailInformation) {
     this._repo = value;
     console.log(this.repo.markdownUrl.replace(/[^/]*$/, ''));
     // this.markdownService.compile()
