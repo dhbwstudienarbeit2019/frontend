@@ -18,7 +18,6 @@ export class AlgorithmsPageComponent implements OnInit {
   @ViewChild('parameters')
   public parameters: ParametersComponent;
 
-  private algorithmName: string;
   public AlgorithmResults: Point[];
   public FunctionResults: FunctionPoint[];
   public algorithmInfo: RepositoryInformation;
@@ -47,18 +46,25 @@ export class AlgorithmsPageComponent implements OnInit {
       .catch(err => console.error(err));
     console.log('worker started');
   }
+  public select(event: any) {
+    const selectedIdx = event.target.selectedIndex;
+    this.functionInfo = this.functions[selectedIdx];
+  }
+  public getParameters(): any {
+    return this.parameters.makeObject();
+  }
 
   constructor(private readonly route: ActivatedRoute,
     private readonly workerService: WebworkerProviderService,
     private readonly wikiService: WikientryService,
     private readonly functionProvider: OptimizationProviderService) {
-    /*  this.algorithmInfo = {
-        markdownUrl: 'https://cdn.jsdelivr.net/gh/dhbwstudienarbeit2019/CSO@1.2/dist/README.md',
-        name: 'Cat Swarm Optimization',
-        owner: 'Laura Kaipl',
-        parameterJsonUrl: 'https://cdn.jsdelivr.net/gh/dhbwstudienarbeit2019/CSO@1.2/dist/parameters.json',
-        webworkerUrl: 'https://cdn.jsdelivr.net/gh/dhbwstudienarbeit2019/CSO@1.2/dist/index.js'
-      };*/
+    /* this.algorithmInfo = {
+       markdownUrl: 'https://cdn.jsdelivr.net/gh/dhbwstudienarbeit2019/CSO@1.2/dist/README.md',
+       name: 'Cat Swarm Optimization',
+       owner: 'Laura Kaipl',
+       parameterJsonUrl: 'https://cdn.jsdelivr.net/gh/dhbwstudienarbeit2019/CSO@1.2/dist/parameters.json',
+       webworkerUrl: 'https://cdn.jsdelivr.net/gh/dhbwstudienarbeit2019/CSO@1.2/dist/index.js'
+     };*/
     this.algorithmInfo = {
       markdownUrl: 'http://localhost:4201/README.md',
       name: 'Cat Swarm Optimization',
@@ -67,47 +73,30 @@ export class AlgorithmsPageComponent implements OnInit {
       webworkerUrl: 'http://localhost:4201/index.js'
     };
     this.route.params.subscribe(params => {
-      this.algorithmName = this.convertNameToClassName(params['algorithmName']);
-      console.log({ 'name': params['algorithmName'] });
-      const className = this.algorithmName
-        .replace(/_+?/g, '').toLowerCase();
-      this.functionInfo = this.functionProvider.Functions.find(func => func.constructor.name.toLowerCase() === className);
+      const algorithmName = this.convertNameToClassName(params['algorithmName']);
+      const functionName = this.convertNameToClassName(params['functionName']).replace(/_+?/g, '').toLowerCase();
+      console.log({ algorithmName, functionName });
+
+      this.functionInfo = this.functionProvider.Functions.find(func => func.constructor.name.toLowerCase() === functionName);
+      console.log({
+        fk: this.functionInfo,
+        al: this.algorithmInfo,
+      });
+
       const worker = this.workerService.startWebworker<[]>('/assets/functionCalculator.js');
       if (this.functionInfo !== undefined && this.algorithmInfo !== undefined) {
-        const config = {
-          data: {
-            action: 'start',
-            config: {
-              maximumNumberOfIterations: 30,
-              numberOfCats: 10,
-              mixtureRatio: 0.5,
-              constantNumber: 2,
-              selfPositionConsidering: true,
-              countsOfDimensionsToChange: 2,
-              seekingRangeOfSelectedDimension: 15,
-              seekingMemoryPool: 30
-            },
-            func: '(x,y)=>x*x+y*y',
-            searchArea: {
-              min: {
-                x: -100,
-                y: -100
-              },
-              max: {
-                x: 100,
-                y: 100
-              }
-            }
-          }
-        };
-        worker.send(config.data);
+        worker.send({
+          ... this.functionInfo,
+          func: this.functionInfo.func.toString(),
+        });
         worker.result.then(result => {
           this.FunctionResults = <FunctionPoint[]>result;
-          console.log([this.FunctionResults && this.AlgorithmResults, this.FunctionResults, this.AlgorithmResults]);
+          console.log([this.FunctionResults, this.FunctionResults]);
         }).catch(err => console.error({ err }));
-        console.log(('updated url:' + this.algorithmName));
       }
     });
+
+    this.functionInfo = this.functions[0];
   }
 
   private convertNameToClassName(name: string): string {
