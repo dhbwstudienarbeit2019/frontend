@@ -4,9 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { WebworkerProviderService } from '../webworker-provider/webworker-provider.service';
 import { OptimizationProviderService } from '../algorithms/optimization-provider.service';
 import { OptimizationAlgorithmInterface } from '../algorithms/optimization-algorithm.interface';
-import { RepositoryInformation, WikientryService } from '../wiki-entry/wikientry.service';
+import { RepositoryInformation, WikientryService, RepositoryDetailInformation } from '../wiki-entry/wikientry.service';
 import { ParametersComponent } from '../parameters/parameters.component';
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
   selector: 'app-algorithms-page',
@@ -20,7 +19,7 @@ export class AlgorithmsPageComponent implements OnInit {
 
   public AlgorithmResults: Point[];
   public FunctionResults: FunctionPoint[];
-  public algorithmInfo: RepositoryInformation;
+  public algorithmInfo: RepositoryDetailInformation;
   private functionInfo: OptimizationAlgorithmInterface;
 
   public get functions() {
@@ -69,6 +68,9 @@ export class AlgorithmsPageComponent implements OnInit {
       markdownUrl: 'http://localhost:4201/README.md',
       name: 'Cat Swarm Optimization',
       owner: 'Laura Kaipl',
+      description: '',
+      lastUpdated: '',
+      repository: '',
       parameterJsonUrl: 'http://localhost:4201/parameters.json',
       webworkerUrl: 'http://localhost:4201/index.js'
     };

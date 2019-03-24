@@ -5,7 +5,7 @@
 
 </app-parameters>
 <div class="mb-5">
-  <h3>Select an optimization function:</h3>
+  <h3>Select an optimization algorithm:</h3>
   <div class="d-flex flex-row">
     <select class="form-control m-3 w-auto" (change)="select($event)">
       <option *ngFor="let func of functions; let i=index" [id]="i">{{func.name}}</option>
