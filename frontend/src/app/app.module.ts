@@ -17,7 +17,7 @@ import { WikientryService } from './wiki-entry/wikientry.service';
 import { OptimizationProviderService } from './algorithms/optimization-provider.service';
 
 @NgModule({
-  declarations: [ 
+  declarations: [
     AppComponent,
     NavbarComponent,
     MainpageComponent,
@@ -33,7 +33,7 @@ import { OptimizationProviderService } from './algorithms/optimization-provider.
     AppRoutingModule,
     HttpClientModule,
     MarkdownModule.forRoot({ loader: HttpClient }),
-    NgbModule.forRoot(),
+    NgbModule,
   ],
   providers: [
     WikientryService,
