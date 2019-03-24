@@ -3,16 +3,11 @@
   <span class="row d-flex flex-fill flex-column m-0 p-0">
     <app-navbar></app-navbar>
   </span>
-<div class="row m-0 p-0 ">
-  <div class="pl-0 col-auto">
-    <div class="d-flex flex-row flex-fill">
-     <app-sidebar [entries]="entries"></app-sidebar>
+  <div class="row m-0 p-0 ">
+    <div class="col mt-3">
+      <div class="">
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </div>
-  <div class="col mt-3">
-    <div class="">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
-</div>
 </span>
