@@ -15,6 +15,9 @@ import { AlgorithmsPageComponent } from './algorithms-page/algorithms-page.compo
 import { FunctionsPageComponent } from './functions-page/functions-page.component';
 import { WikientryService } from './wiki-entry/wikientry.service';
 import { OptimizationProviderService } from './algorithms/optimization-provider.service';
+import { FunctionsListComponent } from './functions-list/functions-list.component';
+import { AlgorithmsListComponent } from './algorithms-list/algorithms-list.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,13 +29,16 @@ import { OptimizationProviderService } from './algorithms/optimization-provider.
     ParametersComponent,
     WikiEntryComponent,
     AlgorithmsPageComponent,
-    FunctionsPageComponent
+    FunctionsPageComponent,
+    FunctionsListComponent,
+    AlgorithmsListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     MarkdownModule.forRoot({ loader: HttpClient }),
+    FormsModule,
     NgbModule,
   ],
   providers: [

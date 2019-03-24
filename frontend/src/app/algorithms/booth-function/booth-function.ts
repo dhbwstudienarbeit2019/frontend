@@ -1,7 +1,7 @@
 import { OptimizationAlgorithmInterface } from '../optimization-algorithm.interface';
 
 export class BoothFunction implements OptimizationAlgorithmInterface {
-    public readonly description = '';
+    public readonly description = 'In mathematical optimization, the Booth Function is a convex function used as a performance test problem for optimization algorithms.';
     public readonly name = 'Booth';
     public readonly searchArea = {
         min: { x: -10, y: -10 },

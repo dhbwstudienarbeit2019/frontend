@@ -1,0 +1,12 @@
+<div class="m-3 row">
+  <input class="form-control col mr-2" type="text" placeholder="Search..."  [(ngModel)]="searchText">
+  <div class="btn btn-primary col-auto ">
+    <i class="fa fa-search"></i>
+  </div>
+</div>
+<div class="card-columns">
+  <a [routerLink]="info.name+'function'" class="card p-2 text-left  " *ngFor="let info of shownFunctions" >
+    <h3>{{info.name}} Function</h3>
+    <span>{{info.description}}</span>
+  </a>
+</div>

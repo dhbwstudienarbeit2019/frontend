@@ -1,7 +1,7 @@
 import {OptimizationAlgorithmInterface} from '../optimization-algorithm.interface';
 
 export class BealeFunction implements OptimizationAlgorithmInterface {
-    public readonly description = '';
+    public readonly description = 'The Beale Function is multimodal, with sharp peaks at the corners of the input domain.';
     public readonly name = 'Beale';
     public readonly searchArea = {
         min: {x: -4.5, y: -4.5},
