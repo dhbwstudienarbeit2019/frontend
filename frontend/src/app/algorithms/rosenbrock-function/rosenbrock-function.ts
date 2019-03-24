@@ -4,8 +4,8 @@ export class RosenbrockFunction implements OptimizationAlgorithmInterface {
     public readonly description = '';
     public readonly name = 'Rosenbrock';
     public readonly searchArea = {
-        min: {x: Number.NEGATIVE_INFINITY, y: Number.NEGATIVE_INFINITY},
-        max: {x: Number.POSITIVE_INFINITY, y: Number.POSITIVE_INFINITY}
+        min: {x: -10, y: -10},
+        max: {x: 10, y: 10}
     };
     public readonly func = (x: number, y: number) => {
         const yxx = (y - x * x);
