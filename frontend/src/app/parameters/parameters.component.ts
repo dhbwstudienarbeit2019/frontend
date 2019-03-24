@@ -12,7 +12,7 @@ export class ParametersComponent implements OnInit {
   }
 
   private previousParameterUrl = '';
-  private parameterConfig: any[] = [];
+  public parameterConfig: any[] = [];
 
   @Input()
   public set parameterUrl(url: string) {
