@@ -1,4 +1,5 @@
 import { RepositoryDetailInformation, RepositoryInformation } from './wiki-entry/wikientry.service';
+import { environment } from 'src/environments/environment';
 
 export class RepositoryProvider {
     constructor() {
@@ -15,17 +16,23 @@ export class RepositoryProvider {
                 parameterJsonUrl: 'https://cdn.jsdelivr.net/gh/dhbwstudienarbeit2019/CSO@1.2/dist/parameters.json',
                 webworkerUrl: 'https://cdn.jsdelivr.net/gh/dhbwstudienarbeit2019/CSO@1.2/dist/index.js',
                 repository: '',
-            }, {
+            }
+        ];
+        if (environment.production) {
+            this.Repositories.push({
                 markdownUrl: 'http://localhost:4201/README.md',
-                name: 'Cat Swarm Optimization',
-                owner: 'Laura Kaipl',
-                description: '',
+                name: 'Localhost:4201',
+                owner: 'you',
+                description: `your algorithm repository for testing.
+                Parameters url: http://localhost:4201/parameters.json
+                Markdown url: http://localhost:4201/README.md
+                Webworker url: http://localhost:4201/index.js`,
                 lastUpdated: new Date().toDateString(),
                 parameterJsonUrl: 'http://localhost:4201/parameters.json',
                 webworkerUrl: 'http://localhost:4201/index.js',
                 repository: ''
-            }
-        ];
+            });
+        }
     }
     public readonly Repositories: RepositoryDetailInformation[];
 }
