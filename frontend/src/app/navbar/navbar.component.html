@@ -1,6 +1,8 @@
 <header class="navbar navbar-dark bg-dark  navbar-fixed-top navbar-expand-sm">
 
-  <a class="navbar-brand" [routerLink]="['/']" (click)="navbarCollapsed = true">IOCEO Logo</a>
+  <a class="navbar-brand" [routerLink]="['/']" (click)="navbarCollapsed = true">
+    <img src="assets/logo.png" style="object-fit:contain; height:30px;">
+  </a>
 
   <button class="navbar-toggler navbar-toggler-right" type="button" (click)="navbarCollapsed = !navbarCollapsed"
           [attr.aria-expanded]="!navbarCollapsed" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
