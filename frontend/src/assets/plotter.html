@@ -16,10 +16,21 @@
 </head>
 
 <body>
-  <!-- Plotly chart will be drawn inside this DIV -->
-  <div id="graph" style="width:100%;height:100%"></div>
   <script>
+    let graphElement;
+
+    function createGraph() {
+      if (graphElement !== undefined) {
+        document.body.removeChild(graphElement);
+      }
+      graphElement = document.createElement("div");
+      graphElement.setAttribute("id","graph");
+      graphElement.style = "width:100%;height:100%"
+      document.body.appendChild(graphElement);
+    }
+
     function draw(inputData) {
+      createGraph();
       console.log({
         'received data:': inputData
       });
@@ -182,7 +193,6 @@
         }
       ];
       Plotly.newPlot("graph", data, layout);
-
     }
 
     window.addEventListener('message', draw);
