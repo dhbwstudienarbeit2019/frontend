@@ -30,17 +30,16 @@
         return;
       }
       const lineData = inputData.data.lineData;
+      if (lineData === undefined || lineData.length === 0) {
+        console.log('no linedata defined');
+      }
       const allDots = [];
-      console.log({lineData});
       surfaceData.map(dotArray => dotArray.map(dot => allDots.push(dot)));
-      const zDots = surfaceData.map(dotArray =>
-        // dotArray.map(dot => [dot.x, dot.y, dot.value])
-        [
-          ...dotArray.map(dot => dot.x),
-          ...dotArray.map(dot => dot.y),
-          ...dotArray.map(dot => dot.value)
-        ]
-      );
+      const zDots = surfaceData.map(dotArray => [
+        ...dotArray.map(dot => dot.x),
+        ...dotArray.map(dot => dot.y),
+        ...dotArray.map(dot => dot.value)
+      ]);
       const colorScale = {
         z: [
           [0, 0, 50, 0, 100],
@@ -62,6 +61,10 @@
       allDots.map(dot => ar[dot.x] = []);
       allDots.map(dot => ar[dot.x][dot.y] = dot.value);
 
+      function mapValue(value, in_min, in_max, out_min, out_max) {
+        return (value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+      }
+
       function createAxis(min, max, values, count) {
         const shownIndices = [];
         const shownValues = [];
@@ -79,17 +82,48 @@
         shownValues.push(max);
         return {
           values: shownValues.map(value => value.toFixed(Math.min(0, 4 - Math.log10(Math.abs(value))))),
-          indices: shownIndices
+          indices: shownIndices,
+          mapValue: value => (value - min) * (count) / (max - min),
         };
       }
 
       const xaxis = createAxis(xMin, xMax, allDots.map(dot => dot.x), 10);
       const yaxis = createAxis(yMin, yMax, allDots.map(dot => dot.y), 10);
+      /*lineData.push({
+        x: 0,
+        y: 0,
+        value: 0
+      }, {
+        x: -5,
+        y: -5,
+        value: 0
+      }, {
+        x: 5,
+        y: 5,
+        value: 0
+      }, {
+        x: 5,
+        y: -5,
+        value: 0
+      }, {
+        x: -5,
+        y: 5,
+        value: 0
+      });*/
+      const getW = () => {
+        if (window.innerWidth > 800) {
+          return 800;
+        }
+        if (window.innerWidth < 300) {
+          return 300;
+        }
+        return window.innerWidth;
 
+      };
       const layout = {
         showlegend: true,
         height: 800,
-        width: 800,
+        width: getW(),
         opacity: 0.5,
         scene: {
           aspectmode: "auto",
@@ -122,13 +156,19 @@
           colorscale: colorScale
         },
         {
-          x: lineData,
-          y: lineData,
-          z: lineData,
+          hoverinfo: 'text',
+          x: [...lineData.map(dot => mapValue(dot.x,
+            Math.min(...xaxis.values), Math.max(...xaxis.values),
+            Math.min(...xaxis.indices), 1 + Math.max(...xaxis.indices)))],
+          y: [...lineData.map(dot => mapValue(dot.y,
+            Math.min(...yaxis.values), Math.max(...yaxis.values),
+            Math.min(...yaxis.indices), 1 + Math.max(...yaxis.indices)))],
+          z: lineData.map(dot => dot.value),
+          text: lineData.map(dot => `x: ${dot.x.toFixed(5)}<br>y: ${dot.y.toFixed(5)}<br>z: ${dot.value.toFixed(5)}`),
           mode: "markers",
           name: 'trace2',
           marker: {
-            size: [30, 30, 30],
+            size: lineData.map(dot => 30),
             color: 'rgb(0,0,0)',
 
             line: {
@@ -141,10 +181,6 @@
           domain: [0, 0, 0]
         }
       ];
-      console.log({
-        data,
-        layout
-      });
       Plotly.newPlot("graph", data, layout);
 
     }
