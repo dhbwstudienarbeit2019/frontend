@@ -7,7 +7,7 @@ import { AlgorithmsListComponent } from './algorithms-list/algorithms-list.compo
 
 const routes: Routes = [
   {
-    path: 'functions/:algorithmName',
+    path: 'functions/:functionName',
     component: FunctionsPageComponent
   }, {
     path: 'functions',
