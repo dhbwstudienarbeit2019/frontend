@@ -18,19 +18,21 @@
 <body>
   <script>
     let graphElement;
+    let lastData;
 
     function createGraph() {
       if (graphElement !== undefined) {
         document.body.removeChild(graphElement);
       }
       graphElement = document.createElement("div");
-      graphElement.setAttribute("id","graph");
+      graphElement.setAttribute("id", "graph");
       graphElement.style = "width:100%;height:100%"
       document.body.appendChild(graphElement);
     }
 
     function draw(inputData) {
       createGraph();
+      lastData = inputData;
       console.log({
         'received data:': inputData
       });
@@ -100,27 +102,6 @@
 
       const xaxis = createAxis(xMin, xMax, allDots.map(dot => dot.x), 10);
       const yaxis = createAxis(yMin, yMax, allDots.map(dot => dot.y), 10);
-      /*lineData.push({
-        x: 0,
-        y: 0,
-        value: 0
-      }, {
-        x: -5,
-        y: -5,
-        value: 0
-      }, {
-        x: 5,
-        y: 5,
-        value: 0
-      }, {
-        x: 5,
-        y: -5,
-        value: 0
-      }, {
-        x: -5,
-        y: 5,
-        value: 0
-      });*/
       const getW = () => {
         if (window.innerWidth > 800) {
           return 800;
@@ -153,10 +134,10 @@
           },
         },
         margin: {
-          l: 50,
-          r: 50,
-          b: 50,
-          t: 50
+          l: 5,
+          r: 5,
+          b: 5,
+          t: 5
         }
       };
       const data = [{
@@ -196,6 +177,16 @@
     }
 
     window.addEventListener('message', draw);
+    let timeout;
+    window.addEventListener('resize', () => {
+      if (timeout === undefined) {
+        console.log('resize')
+        timeout = setTimeout(() => {
+          timeout = undefined;
+          draw(lastData);
+        }, 2000);
+      }
+    });
     console.log('registered');
     if (window.parent) {
       window.parent.postMessage('givemestuff', '*');
