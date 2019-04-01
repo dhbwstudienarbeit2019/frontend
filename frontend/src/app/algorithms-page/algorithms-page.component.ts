@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Point, FunctionPoint, StartMessage } from '../webworker-provider/message.interface';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { WebworkerProviderService } from '../webworker-provider/webworker-provider.service';
 import { OptimizationProviderService } from '../algorithms/optimization-provider.service';
 import { OptimizationAlgorithmInterface } from '../algorithms/optimization-algorithm.interface';
 import { RepositoryInformation, WikientryService, RepositoryDetailInformation } from '../wiki-entry/wikientry.service';
 import { ParametersComponent } from '../parameters/parameters.component';
+import { RepositoryProvider } from '../repository-provider';
 
 @Component({
   selector: 'app-algorithms-page',
@@ -17,7 +18,7 @@ export class AlgorithmsPageComponent implements OnInit {
   @ViewChild('parameters')
   public parameters: ParametersComponent;
 
-  public AlgorithmResults: Point[];
+  public AlgorithmResults: FunctionPoint[];
   public FunctionResults: FunctionPoint[];
   public algorithmInfo: RepositoryDetailInformation;
   private functionInfo: OptimizationAlgorithmInterface;
@@ -38,7 +39,13 @@ export class AlgorithmsPageComponent implements OnInit {
     console.log({ startConfig, worker, func: this.functionInfo.func.toString() });
     worker.result
       .then(value => {
-        this.AlgorithmResults = value;
+        this.AlgorithmResults = (value as Point[]).map(point => {
+          return {
+            value: this.functionInfo.func(point.x, point.y),
+            ...point
+          };
+        }
+        );
         console.log([this.FunctionResults && this.AlgorithmResults, this.FunctionResults, this.AlgorithmResults]);
         console.log(value);
       })
@@ -46,40 +53,33 @@ export class AlgorithmsPageComponent implements OnInit {
     console.log('worker started');
   }
   public select(event: any) {
+
     const selectedIdx = event.target.selectedIndex;
     this.functionInfo = this.functions[selectedIdx];
+    this.router.navigateByUrl('/algorithms/' + this.algorithmInfo.name + '/' + this.functionInfo.name + 'function');
+    console.log({ selected: this.functionInfo });
   }
   public getParameters(): any {
     return this.parameters.makeObject();
   }
 
   constructor(private readonly route: ActivatedRoute,
+    private readonly router: Router,
     private readonly workerService: WebworkerProviderService,
     private readonly wikiService: WikientryService,
+    private readonly repositoryProvider: RepositoryProvider,
     private readonly functionProvider: OptimizationProviderService) {
-    /* this.algorithmInfo = {
-       markdownUrl: 'https://cdn.jsdelivr.net/gh/dhbwstudienarbeit2019/CSO@1.2/dist/README.md',
-       name: 'Cat Swarm Optimization',
-       owner: 'Laura Kaipl',
-       parameterJsonUrl: 'https://cdn.jsdelivr.net/gh/dhbwstudienarbeit2019/CSO@1.2/dist/parameters.json',
-       webworkerUrl: 'https://cdn.jsdelivr.net/gh/dhbwstudienarbeit2019/CSO@1.2/dist/index.js'
-     };*/
-    this.algorithmInfo = {
-      markdownUrl: 'http://localhost:4201/README.md',
-      name: 'Cat Swarm Optimization',
-      owner: 'Laura Kaipl',
-      description: '',
-      lastUpdated: '',
-      repository: '',
-      parameterJsonUrl: 'http://localhost:4201/parameters.json',
-      webworkerUrl: 'http://localhost:4201/index.js'
-    };
+    this.algorithmInfo = repositoryProvider.Repositories[0];
     this.route.params.subscribe(params => {
       const algorithmName = this.convertNameToClassName(params['algorithmName']);
-      const functionName = this.convertNameToClassName(params['functionName']).replace(/_+?/g, '').toLowerCase();
+      const functionName = this.convertNameToClassName(params['functionName'])
+        .replace(/_+?/g, '')
+        .replace('function', '')
+        .replace('Function', '')
+        .toLowerCase();
       console.log({ algorithmName, functionName });
 
-      this.functionInfo = this.functionProvider.Functions.find(func => func.constructor.name.toLowerCase() === functionName);
+      this.functionInfo = this.functionProvider.Functions.find(func => func.name.toLowerCase() === functionName);
       console.log({
         fk: this.functionInfo,
         al: this.algorithmInfo,

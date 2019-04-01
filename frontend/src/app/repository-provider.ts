@@ -18,7 +18,7 @@ export class RepositoryProvider {
                 repository: '',
             }
         ];
-        if (environment.production) {
+       /* if (!environment.production) {
             this.Repositories.push({
                 markdownUrl: 'http://localhost:4201/README.md',
                 name: 'Localhost:4201',
@@ -32,7 +32,7 @@ export class RepositoryProvider {
                 webworkerUrl: 'http://localhost:4201/index.js',
                 repository: ''
             });
-        }
+        }*/
     }
     public readonly Repositories: RepositoryDetailInformation[];
 }

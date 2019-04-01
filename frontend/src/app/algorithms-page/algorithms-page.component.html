@@ -12,6 +12,6 @@
     </select>
     <div class="btn-sm btn-primary w-auto d-flex justify-self-center align-self-center" (click)="evaluate()">Evaluate</div>
   </div>
-  <app-graph *ngIf="AlgorithmResults && FunctionResults" [LinePoints]="Algorithmesults" [SurfacePoints]="FunctionResults">
+  <app-graph *ngIf="AlgorithmResults && FunctionResults" [LinePoints]="AlgorithmResults" [SurfacePoints]="FunctionResults">
   </app-graph>
 </div>

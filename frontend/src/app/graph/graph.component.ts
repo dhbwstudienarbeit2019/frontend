@@ -26,24 +26,19 @@ export class GraphComponent implements OnInit {
     this.pushData();
   }
   @Input()
-  public LinePoints: Point[];
+  public LinePoints: FunctionPoint[];
 
   private pushData() {
     try {
       const pushStuff = () => this.iframeElement.contentWindow.postMessage(<PlotMessage>{
-        lineData: [],
+        lineData: this.LinePoints,
         surfaceData: this.surfacePoints
       }, '*');
 
       if (this.iframeElement !== undefined) {
         if (this.iframeElement.contentWindow !== undefined && this.iframeElement.contentWindow !== null) {
           pushStuff();
-          console.log('stuff pushed');
-        } else {
-          console.log({
-            'contentwindow empty:(': [this.iframeElement.contentWindow,
-            this.iframeElement]
-          });
+          console.log('stuff pushed lineP:' + this.LinePoints.length + ' surfP:' + this.surfacePoints.length);
         }
       } else {
         console.log('iframe not loaded');
