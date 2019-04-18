@@ -2,7 +2,8 @@ import { OptimizationAlgorithmInterface } from '../optimization-algorithm.interf
 
 export class AckleyFunction implements OptimizationAlgorithmInterface {
 
-    public readonly description = `    In mathematical optimization, the Ackley Function is a non-convex function used as a performance test problem for optimization algorithms.
+    public readonly description = `In mathematical optimization, the Ackley Function is a non-convex
+    function used as a performance test problem for optimization algorithms.
     N-dimensional function that has a large number of local minima but only one global minimum`;
     public readonly name = 'Ackley';
     public readonly searchArea = {

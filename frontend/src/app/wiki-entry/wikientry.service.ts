@@ -27,6 +27,14 @@ export class WikientryService {
 
 }
 
+export interface RepositoryInformation {
+  owner: string;
+  description: string;
+  name: string;
+  repository: string;
+  lastUpdated: string;
+}
+
 export interface RepositoryDetailInformation extends RepositoryInformation {
   markdownUrl: string;
   webworkerUrl: string;
@@ -34,12 +42,5 @@ export interface RepositoryDetailInformation extends RepositoryInformation {
   owner: string;
   description: string;
   name: string;
-  lastUpdated: string;
-}
-export interface RepositoryInformation {
-  owner: string;
-  description: string;
-  name: string;
-  repository: string;
   lastUpdated: string;
 }

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +11,7 @@ export class NavbarComponent implements OnInit {
   }
 
   public navbarCollapsed = true;
-  public components = ["c1","c2","c3"];
+  public components = ['c1', 'c2', 'c3'];
 
   ngOnInit() {
   }

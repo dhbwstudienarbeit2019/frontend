@@ -8,7 +8,7 @@ import { RepositoryProvider } from '../repository-provider';
 })
 export class AlgorithmsListComponent implements OnInit {
 
-  constructor( private readonly repositoryProvider:RepositoryProvider) { }
+  constructor(private readonly repositoryProvider: RepositoryProvider) { }
   public searchText = '';
   public get algorithms() {
     return this.repositoryProvider.Repositories;

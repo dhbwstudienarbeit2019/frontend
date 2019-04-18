@@ -38,8 +38,7 @@ export class FunctionsPageComponent implements OnInit {
       if (this.functionInfo === undefined) {
         console.log({ 'no function found:': this.functionName });
         return;
-      }
-      else {
+      } else {
         console.log({ 'function found:': this.functionInfo });
       }
       const worker = this.workerService.startWebworker('/assets/functionCalculator.js');
