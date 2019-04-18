@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+  - "10"
+dist: trusty
+sudo: required
+
+branches:
+  only:
+  - master
+
+before_script:
+  - npm install -g @angular/cli
+
+script:
+- cd frontend
+- npm i 
+- ng lint
+- ng build --prod --base-href /
