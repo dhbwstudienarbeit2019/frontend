@@ -1,29 +1,28 @@
 language: node_js
 node_js:
-  - "10"
+- '10'
 dist: trusty
 sudo: required
-
 branches:
   only:
   - master
-
 before_script:
-  - npm install -g @angular/cli
-
+- npm install -g @angular/cli
 script:
 - cd frontend
-- npm i 
+- npm i
 - ng lint
 - ng build --prod --base-href /
-
 deploy:
   provider: pages
   repo: https://github.com/dhbwstudienarbeit2019/dhbwstudienarbeit2019.github.io.git
   target_branch: master
   fqdn: research.ieoca.org
   skip_cleanup: true
-  github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  github_token: "$GITHUB_TOKEN"
   keep_history: true
   on:
     branch: master
+before_install:
+- openssl aes-256-cbc -K $encrypted_61a67540741e_key -iv $encrypted_61a67540741e_iv
+  -in github_deploy_key.enc -out github_deploy_key -d
