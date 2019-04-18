@@ -24,5 +24,4 @@ deploy:
   on:
     branch: master
 before_install:
-- openssl aes-256-cbc -K $encrypted_61a67540741e_key -iv $encrypted_61a67540741e_iv
-  -in github_deploy_key.enc -out github_deploy_key -d
+- openssl aes-256-cbc -K $encrypted_61a67540741e_key -iv $encrypted_61a67540741e_iv -in github_deploy_key.enc -out github_deploy_key -d
