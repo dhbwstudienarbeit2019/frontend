@@ -15,7 +15,7 @@ script:
 - ng build --prod --base-href /
 deploy:
   provider: pages
-  repo: https://github.com/dhbwstudienarbeit2019/dhbwstudienarbeit2019.github.io.git
+  repo: dhbwstudienarbeit2019/dhbwstudienarbeit2019.github.io
   target_branch: master
   fqdn: research.ieoca.org
   skip_cleanup: true
