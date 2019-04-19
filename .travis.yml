@@ -19,6 +19,7 @@ deploy:
   target_branch: master
   fqdn: research.ieoca.org
   skip_cleanup: true
+  local_dir: frontend/dist
   github_token: $GITHUB_TOKEN
   keep_history: true
   on:
