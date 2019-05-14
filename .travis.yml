@@ -13,6 +13,9 @@ script:
 - npm i
 - ng lint
 - ng build --prod --base-href /
+env:
+  global:
+    - secure: NlWIk0fOMVXnKOFS57sdT9qKjHf/miBOujiRBMwJcxyQtUufbEcIR+p/ym60HxlOEZ6pT6XyhZ+UdHYEEBI3aCcrMKb+wMLuFuNaLXcpaC6Ajd4BjVnDqutgGEbSZKLRIBd84MrQNhZ4hmYkiQwVs6gPLG710uStZ74DL6en+PvrQbQAl2J2g6gxk4JgiL2jZayz2lGXki1Q7Df3HoKRwNylw5jxOkeFAOP1JVCH1QXc62pdZLevf+8nqP1nLrIw91nNszswSFIyzubV1ccUA5RgmZqZ4ZyCOJJtgZZl0Ir0sKakbNHmQf2SxlJmGi+Bz/6QpM7NAWr8lWx2ASHz/l/qHpXygSilK2BUcK9gpoWLRCCM8lKDmyz+cBXBTyU/ClT5wBSyxu5fYBL8qK9gDuGokK1G9HlYiB6+ayuX9O2gDSvEkKBkdMf+ctHfkkhDMDmMprnsqiOqrT+hnhoQXhkHVK+mGKjCUykr9ywoPyzTp1JuCH1/GhhuECsmiRycUtLdOlZHenRvVGofiSYD6dr+I30JQhB+/PTK52hWnUHjrjWJke3obZMDX0ax13uJ06IHug18wJQsrPNjF5BEVnfqyibDBRnoby5YnBa3Xz5QWRs+Pdgt1+1r4VVje4V1BrF4YesOZK/G4/DXJAo1i5Qsxi2WmCvLN2VZV/G873I=
 deploy:
   provider: pages
   repo: dhbwstudienarbeit2019/dhbwstudienarbeit2019.github.io
