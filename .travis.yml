@@ -15,7 +15,7 @@ script:
 - ng build --prod --base-href /
 env:
   global:
-    - secure: "Qq3EfKcEuEHx5QsSO8e8CLyiPeTOGO/agfjpCRmUxWQjkhExAL8m+NXOdWLp/L6mti/fuGJO1l95/BG3NItsxS73Y8KjCwGcdGoNIv4ysYDWTGTc+1axPLM76VYI2AfUeJXG5IsXGXBDC+ervOA7PV6xNUaH9SfSewfVpQ7rKitYX0ET5HkuuqPdj2u1rmgpxTtCZE/ENBW5lgCyWupS/CkJKOu3+TZvM7HWg5hiuMCezo7Pmh1Xp7bH6nWW/tO9Tz4B/nfycEZxidTtK++bsIwoFI7qWYx4V0xvuCGJ3eTmLK9vfblXB/4CaWwDnDpiKLqc+PjVqeKmqH1/fCBRfi5dvffvJHarnMT9UqaVcQvG+EFfnzxmQl/r09SGb3sI/emfzKZ63ztexMIeSNdcZaY8ogtgeisVYCZO0BJH18QjVK97r96olN+nqLlv3EA9cvMvf9fFGf927vTwY4QhA+oH7t7ckmSFbVPtpwcgdQCfdUI9Y+0ljJYz7J4GYznQca9kfSNkjTA0ScolgpPvif9syi6jranMxbZkWSx8AfRxyPngGEDiB2z4sGfT4VJukTrWqKJ7jVcj1ajmSIsMA/PpJu5+zxo2jv4wa18dQx8ef/6qqGF/jylXuUJYP9g/K+TI6qkNxqIMOG8wWfFwDMn7rGf0TsYKSX6MXYT2wGY="
+  - secure: Z+2eLezJBDwwYWHhZbGtqIVvrJGuWRmHO/lAqf9pSUqxMxcakUPsm7994/0P0QljT8aBJH7T96xdHgd8GkJ2dXD5O57iN5yimISdZIxUf650Qpp+hZhmTBnw+Inb0sp3mrnmCSD32fpM2ZPGHtgFeCrSWb49MLEBfrHVsmu7QpfxhflGxvrKqjIvRS0rEDkzLvt/vYynpbRB2+jAGK1fL6FJ+D3Q7dQl0wue0a7LU8s514DyaerxRNXDWHyIW3Dhx+7wPdbk2QPj6gk59uRWvTAAT4vZAhmTgV5NqN/csz2HUnXRhv38DJif2RHTnusYR1ADM6QUCq3ZRBT1rNHch8nzZmPj+DTh0dvZ2R7rUfpJ9BhwgvsIGbguoRRb/fht12RKCsPzVbte4TAp4UBR8/J58ELNJiZ/WF6lc8qh4A5O802U5CpBo9Nzt0IR4R4wuP9qvgZBeIVacqr/M3Kg26Cly2XfiqCMSs2CfTPHEWY0pdnx+4z+u9ySKH5ABnT0sOl3ql5lVoO/9/maMVkJ42dpWhB0gMLwDaGX+zoUhrKmNgBFRoFSPs+p93XngscrtPkMZ/wKaVRKk8ALlWaLyLOdNn2aXw5/2UyD+Ep5rMXaq70BoqWczLU2nhL6+igZJc8sT/Udi3/wCw9yIb1ouG5k42OxtLoTGdeVEpViyn4=
 deploy:
   provider: pages
   repo: dhbwstudienarbeit2019/dhbwstudienarbeit2019.github.io
@@ -23,7 +23,7 @@ deploy:
   fqdn: research.ieoca.org
   skip_cleanup: true
   local_dir: frontend/dist
-  github_token: $GITHUB_TOKEN
+  github_token: "$GITHUB_TOKEN"
   keep_history: true
   on:
     branch: master
