@@ -13,14 +13,15 @@ script:
 - npm i
 - ng lint
 - ng build --prod --base-href /
-deploy:
-  provider: pages
-  repo: dhbwstudienarbeit2019/dhbwstudienarbeit2019.github.io
-  target_branch: master
-  fqdn: research.ieoca.org
-  skip_cleanup: true
-  local_dir: frontend/dist
-  github_token: "$GITHUB_TOKEN"
-  keep_history: true
-  on:
-    branch: master
+after_success: |
+  if [ -n "$GITHUB_TOKEN" ]; then
+    cd "$TRAVIS_BUILD_DIR"
+    git init
+    git checkout -b master
+    git add .
+    git -c user.name='travis' -c user.email='travis' commit -m init
+    # Make sure to make the output quiet, or else the API token will leak!
+    # This works because the API key can replace your password.
+    git push -f -q https://raspyweather:$GITHUB_TOKEN@github.com/dhbwstudienarbeit2019/dhbwstudienarbeit2019.github.io master &>/dev/null
+    cd "$TRAVIS_BUILD_DIR"
+  fi
