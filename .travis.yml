@@ -17,6 +17,7 @@ after_success: |
   if [ -n "$GITHUB_TOKEN" ]; then
     cd "$TRAVIS_BUILD_DIR"
     rm -rf .git
+    cd dist
     git init
     cp index.html 404.html
     git add .
