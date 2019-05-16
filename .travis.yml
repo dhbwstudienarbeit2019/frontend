@@ -16,6 +16,7 @@ script:
 after_success: |
   if [ -n "$GITHUB_TOKEN" ]; then
     cd "$TRAVIS_BUILD_DIR"
+    ng build --prod --base-href /
     rm -rf .git
     cd dist
     git init
