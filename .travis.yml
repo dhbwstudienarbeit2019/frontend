@@ -13,7 +13,9 @@ script:
 - npm i
 - ng lint
 - ng build --prod --base-href /
-after_success: |
+after_success: 
+- |
+  test $TRAVIS_BRANCH = "master" &&
   if [ -n "$GITHUB_TOKEN" ]; then
     cd "$TRAVIS_BUILD_DIR"
     cd frontend
