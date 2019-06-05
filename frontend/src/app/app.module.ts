@@ -19,6 +19,7 @@ import { FunctionsListComponent } from './functions-list/functions-list.componen
 import { AlgorithmsListComponent } from './algorithms-list/algorithms-list.component';
 import { FormsModule } from '@angular/forms';
 import { RepositoryProvider } from './repository-provider';
+import { AboutPageComponent } from './about-page/about-page.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { RepositoryProvider } from './repository-provider';
     AlgorithmsPageComponent,
     FunctionsPageComponent,
     FunctionsListComponent,
-    AlgorithmsListComponent
+    AlgorithmsListComponent,
+    AboutPageComponent
   ],
   imports: [
     BrowserModule,
