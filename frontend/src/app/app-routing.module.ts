@@ -4,6 +4,7 @@ import { FunctionsPageComponent } from './functions-page/functions-page.componen
 import { AlgorithmsPageComponent } from './algorithms-page/algorithms-page.component';
 import { FunctionsListComponent } from './functions-list/functions-list.component';
 import { AlgorithmsListComponent } from './algorithms-list/algorithms-list.component';
+import { AboutPageComponent } from './about-page/about-page.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: 'algorithms',
     component: AlgorithmsListComponent
+  },
+  {
+    path: 'about',
+    component: AboutPageComponent
   },
   {
     path: '**',
